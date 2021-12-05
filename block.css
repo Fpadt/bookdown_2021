@@ -1,0 +1,76 @@
+:root {
+    --gv_gray:rgb(161, 161, 161);
+    --gv_blue:rgb(161, 161, 161);
+    --gv_orange:rgb(161, 161, 161);
+    --note:rgb(25, 64, 122);
+    --tip:rgb(161, 161, 161);
+    --warning:rgb(188, 103, 0);
+    --caution:rgb(188, 50, 0);
+    --important:rgb(188, 0, 0);
+}
+
+.noteblock, .tipblock, .warningblock, .cautionblock, .importantblock {
+    padding:10px;
+    margin:10px 0;
+    padding-left: 70px;
+    position: relative;
+}
+
+.noteblock{
+  border-left: 4px solid var(--note);
+}
+.tipblock{
+  border-left: 4px solid var(--tip);
+}
+.warningblock{
+  border-left: 4px solid var(--warning);
+}
+.cautionblock{
+  border-left: 4px solid var(--caution);
+}
+.importantblock{
+  border-left: 4px solid var(--important);
+}
+
+.noteblock:before, .tipblock:before, .warningblock:before, .cautionblock:before, .importantblock:before {
+  font-family:FontAwesome;
+  font-style:normal;
+  font-weight:400;
+  font-size:200%;    
+  display:inline-block;
+  text-decoration:inherit;
+  width:.2em;
+  position: absolute;  
+  left: 10px;     
+  margin-right:.2em;
+  text-align:center;
+  font-variant:normal;
+  text-transform:none;
+  line-height:1em;
+  margin-left:.2em;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale
+}
+.noteblock:before {
+  color: var(--note);
+  content: "\f05a";
+}
+.tipblock:before {
+  color: var(--tip);
+  content:'\f0eb';
+}
+.warningblock:before {
+  color: var(--warning);
+  content: "\f071";
+}
+.cautionblock:before {
+  color: var(--caution);
+  content:'\f06d';
+}
+.importantblock:before {
+  color: var(--important);
+  content: "\f06a";
+}
+.checkblock:before {
+  content: "\f00c";
+}

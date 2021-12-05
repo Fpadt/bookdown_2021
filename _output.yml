@@ -1,0 +1,53 @@
+bookdown::gitbook:
+  includes:
+    in_header: fontawesome.html
+  lib_dir: "book_assets"
+  css: [style.css, block.css]
+#  split_by: section  
+  highlight: tango  
+  config:
+    toolbar:
+      position: fixed
+    toc:
+      collapse: section # subsection, section, none
+      scroll_highlight: true
+      before: |
+        <li><a href="./">A Minimal Book Example</a></li>
+        <li><a href="...">My Awesome Book</a></li>
+        <li><a href="...">John Smith</a></li>        
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
+    download: ["pdf", "epub"]
+    search:
+      engine: fuse #lunr # or fuse https://opensourcelibs.com/lib/lunr-module
+      # options to control/tune search engine behavior (for
+      # fuse.js, refer to https://fusejs.io/api/options.html)
+      options: 
+        isCaseSensitive: true
+        threshold: 0.0
+        distance: 0
+    fontsettings:
+      theme: white
+      family: sans
+      size: 2
+    sharing:
+      facebook: true
+      github: false
+      twitter: true
+      linkedin: false
+      weibo: false
+      instapaper: false
+      vk: false
+      whatsapp: false
+      all: ['facebook', 'twitter', 'linkedin', 'weibo', 'instapaper']
+    info: true    
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+  extra_dependencies: awesomebox
+bookdown::epub_book: default
+

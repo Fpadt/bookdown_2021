@@ -1,0 +1,244 @@
+# R-Markdown Examples
+
+
+
+<!-- Place your kit's code here -->
+  <script src="https://kit.fontawesome.com/bb450ff670.js" crossorigin="anonymous"></script>
+
+<i class="fas fa-check"></i>
+<i class="fas fa-info-circle"></i>
+<i class="fas fa-fire"></i>
+<i class="fas fa-exclamation-circle"></i>
+<i class="fas fa-exclamation-triangle"></i>
+<i class="fas fa-cogs"></i>
+<i class="far fa-thumbs-up"></i>
+<i class="far fa-thumbs-down"></i>
+<i class="far fa-file-certificate"></i>
+<i class="far fa-lightbulb"></i>
+\
+<i class="fab fa-twitter"></i>
+<i class="fab fa-github"></i>
+<i class="fab fa-bitbucket"></i>
+
+***
+
+<span style="font-size: 3rem;">
+  <span style="color: Mediumslateblue;">
+  <i class="fas fa-camera"></i>
+  </span>
+</span>
+
+<p>Styled Font Awesome icons (size and color):</p>
+<i class="fas fa-cloud" style="font-size:24px;"></i>
+<i class="fas fa-cloud" style="font-size:36px;"></i>
+<i class="fas fa-cloud" style="font-size:48px;color:red;"></i>
+<i class="fas fa-cloud" style="font-size:60px;color:lightblue;"></i>
+
+::: {.theorem #pyth name="Pythagorean theorem"}
+For a right triangle, if $c$ denotes the length of the hypotenuse
+and $a$ and $b$ denote the lengths of the other two sides, we have
+
+$$a^2 + b^2 = c^2$$
+:::
+
+\@ref(thm:pyth)
+
+- article
+- color
+- site
+
+::: {.definition #def01 name="Accounting sales"}
+this is accounting sales
+:::
+
+accounting sales, see (\@ref(definition:def01))
+
+::: {.definition #def02 name="Commercial sales"}
+this is commercial sales
+:::
+
+commercial sales, see (\@ref(def:def02))
+
+::: {.example #exm01 name="Example of Accounting sales"}
+this is accounting sales, example
+:::
+
+Example accounting sales, see (\@ref(exm:exm01))
+
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+options(knitr.table.format = function() {
+  if (knitr::is_latex_output()) 'latex' else 'pandoc'
+})
+```
+
+## raw html
+
+```{=html}
+<p>Any <strong>raw</strong> HTML content works here.
+For example, here is a Youtube video:</p>
+
+<iframe width="100%" height="400"
+  src="https://www.youtube.com/embed/s3JldKoA0zw?rel=0"
+  frameborder="0" allow="autoplay; encrypted-media"
+  allowfullscreen></iframe>
+```
+
+## verbatim
+::: {.verbatim data-latex=""}
+We show some _verbatim_ text here.
+:::
+
+## custom blocks
+
+::: {.infobox .note data-latex="{note}"}
+**NOTICE!**
+
+Thank you for noticing this **new notice**! Your noticing it has
+been noted, and _will be reported to the authorities_!
+:::
+
+:::: {.infobox .tip data-latex="tip"}
+
+Include the actual content here.
+
+::::
+
+:::: {.infobox .warning data-latex="warning"}
+
+Include the actual content here.
+
+::::
+
+:::: {.infobox .caution data-latex="caution"}
+
+Include the actual content here.
+
+::::
+
+\newpage 
+
+## Awesome
+
+::: {.noteblock data-latex=""}
+NOTE!!! tada! Thank you for noticing this **new notice**! Your noticing it has been noted, and _will be reported to the authorities_!
+multiple lines.
+:::
+
+::: {.tipblock data-latex=""}
+TIP!!! Thank you for noticing this **new notice**! Your noticing it has been noted, and _will be reported to the authorities_!
+multiple lines.
+:::
+
+::: {.warningblock data-latex=""}
+WARNING!!! Thank you for noticing this **new notice**! Your noticing it has been noted, and _will be reported to the authorities_!
+multiple lines.
+:::
+
+::: {.cautionblock data-latex=""}
+CAUTION!!! Thank you for noticing this **new notice**! Your noticing it has been noted, and _will be reported to the authorities_!
+multiple lines.
+:::
+
+::: {.importantblock data-latex=""}
+IMPORTANT!!! Thank you for noticing this **new notice**! Your noticing it has been noted, and _will be reported to the authorities_!
+multiple lines.
+:::
+
+***
+
+We define an R function `box_args()` to generate the arguments
+for the box:
+
+```{r}
+box_args <- function(
+  vrulecolor = 'white',
+  hrule = c('\\abLongLine', '\\abShortLine', ''),
+  title = '', vrulewidth = '0pt',
+  icon = 'Bomb', iconcolor = 'black'
+) {
+  hrule <- match.arg(hrule)
+  sprintf(
+    '[%s][%s][\\textbf{%s}]{%s}{\\fa%s}{%s}',
+    vrulecolor, hrule, title, vrulewidth, icon, iconcolor
+  )
+}
+```
+
+Pass some arguments to the `awesomeblock` environment through
+an inline R expression:
+
+::: {.awesomeblock data-latex="`r box_args(title = 'NOTICE!')`"}
+Thank you for noticing this **new notice**!
+
+Your noticing it has been noted, and _will be reported to
+the authorities_!
+:::
+
+## mytables {#mynewtab}
+
+[test](#new_tab)  
+\@ref(mynewtab)  
+\@ref(tab:tab01)  
+(Section \@ref(equations))  
+
+### DT
+
+```{r }
+library(data.table)
+library(DT)
+
+test <- fread(
+   "query; key
+   rep01; article site color
+   rep02; article color
+   rep03; color site", sep=";"
+)
+
+datatable(test, caption = "Table Test", filter = 'top' )
+
+datatable(
+  iris,
+  options = list(dom = 'Pfrtip', columnDefs = list(list(
+    searchPanes = list(show = FALSE), targets = c(2,4)
+  ))),
+  extensions = c('Select', 'SearchPanes'),
+  selection = 'none'
+)
+
+```
+
+
+
+The LaTeX environment `tiny` is only generated for LaTeX output.
+
+```{r, include=knitr::is_latex_output()}
+knitr::asis_output('\n\n\\begin{tiny}')
+```
+
+```{r}
+knitr::kable(mtcars)
+```
+
+```{r, include=knitr::is_latex_output()}
+knitr::asis_output('\\end{tiny}\n\n')
+```
+
+By comparison, below is the table with the normal font size.
+
+```{r}
+knitr::kable(
+  head(mtcars[, 1:8], 10), booktabs = TRUE, label = "tab01",
+  caption = 'Caption here of this table 01'
+)
+```
+
+Tables, see (\@ref(tab:tab01))
+
+url <- "https://bookdown.org/yihui/rmarkdown-cookbook/images/"
+pic <- "warning.png"
+download.file(paste0(url, pic), file.path("images", pic), mode = "wb")
+
+download.file(
+"https://bookdown.org/yihui/rmarkdown-cookbook/libs/gitbook/css/style.css", "images/style2.css")
